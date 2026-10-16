@@ -1,4 +1,4 @@
-import { ApiMatch, Match, MatchStatus } from "@/types";
+import { ApiMatch, ApiNbaMatch, Match, MatchStatus } from "@/types";
 
 export function mapMatch(raw: ApiMatch): Match {
   return {
@@ -19,6 +19,10 @@ export function mapMatch(raw: ApiMatch): Match {
     homeScorers: raw.home_scorers,
     awayScorers: raw.away_scorers,
     qualifies: raw.qualifies,
+    clock: null,
+    quarter: null,
+    overtime: null,
+    seasonStatus: null,
   };
 }
 
@@ -42,6 +46,71 @@ export function isToday(d: Date): boolean {
     d.getMonth() === now.getMonth() &&
     d.getFullYear() === now.getFullYear()
   );
+}
+
+export function isYesterday(d: Date): boolean {
+  const now = new Date();
+  const yesterday = new Date(now);
+  yesterday.setDate(now.getDate() - 1);
+
+  return (
+    d.getDate() === yesterday.getDate() &&
+    d.getMonth() === yesterday.getMonth() &&
+    d.getFullYear() === yesterday.getFullYear()
+  );
+}
+
+export function isTomorrow(d: Date): boolean {
+  const now = new Date();
+  const tomorrow = new Date(now);
+  tomorrow.setDate(now.getDate() + 1);
+
+  return (
+    d.getDate() === tomorrow.getDate() &&
+    d.getMonth() === tomorrow.getMonth() &&
+    d.getFullYear() === tomorrow.getFullYear()
+  );
+}
+
+export function mapNbaStatus(status: string): MatchStatus {
+  const s = status.toUpperCase();
+  if (s.includes("FINAL")) return "finished";
+  if (s === "STATUS_HALFTIME") return "ET";
+  if (
+    s.includes("IN_PROGRESS") ||
+    s.includes("END_PERIOD") ||
+    s.includes("HALFTIME") ||
+    s.includes("OVERTIME")
+  )
+    return "live";
+  if (s.includes("POSTPONED") || s.includes("DELAYED")) return "postponed";
+  return "scheduled";
+}
+
+export function mapNbaMatch(raw: ApiNbaMatch): Match {
+  return {
+    id: raw.id,
+    homeTeam: { name: raw.home_team },
+    awayTeam: { name: raw.away_team },
+    homeScore: raw.home_score,
+    awayScore: raw.away_score,
+    aggHomeScore: null,
+    aggAwayScore: null,
+    homePenalties: null,
+    awayPenalties: null,
+    status: mapNbaStatus(raw.status),
+    league: "NBA",
+    sport: "nba",
+    minute: 0,
+    kickoff: raw.kickoff ? formatKickoff(raw.kickoff) : "",
+    qualifies: null,
+    homeScorers: [],
+    awayScorers: [],
+    clock: raw.clock,
+    quarter: raw.quarter,
+    overtime: raw.overtime,
+    seasonStatus: raw.season_staus,
+  };
 }
 
 export function formatDateParam(d: Date): string {

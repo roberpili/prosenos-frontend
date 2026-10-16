@@ -25,6 +25,10 @@ export interface Match {
   qualifies: number | null;
   homeScorers: number[];
   awayScorers: number[];
+  clock: string | null;
+  quarter: number | null;
+  overtime: boolean | null;
+  seasonStatus: string | null;
 }
 
 export interface ApiMatch {
@@ -44,4 +48,18 @@ export interface ApiMatch {
   qualifies: number | null;
   home_scorers: number[];
   away_scorers: number[];
+}
+
+export interface ApiNbaMatch {
+  id: string;
+  season_staus: string | null;
+  home_team: string;
+  away_team: string;
+  home_score: number | null;
+  away_score: number | null;
+  status: string;
+  quarter: number | null;
+  kickoff: string | null;
+  clock: string | null;
+  overtime: boolean | null;
 }
