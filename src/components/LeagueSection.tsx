@@ -45,6 +45,8 @@ export const LeagueSection = ({ league, matches }: LeagueSectionProps) => {
               status={match.status}
               isLive={isLive}
               kickoff={match.kickoff}
+              clock={match.clock}
+              quarter={match.quarter}
               homeTeam={match.homeTeam}
               awayTeam={match.awayTeam}
               homeScorers={match.homeScorers.map(String)}

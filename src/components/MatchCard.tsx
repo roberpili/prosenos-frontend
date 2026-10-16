@@ -9,6 +9,8 @@ interface MatchCardProps {
   status: MatchStatus;
   isLive: boolean;
   kickoff?: string;
+  clock?: string | null;
+  quarter?: number | null;
   homeTeam: Team;
   awayTeam: Team;
   homeScorers?: string[];
@@ -29,6 +31,8 @@ export const MatchCard = ({
   status,
   isLive,
   kickoff,
+  clock,
+  quarter,
   homeTeam,
   awayTeam,
   homeScorers,
@@ -49,6 +53,8 @@ export const MatchCard = ({
         status={status}
         kickoff={kickoff}
         minute={match.minute}
+        clock={clock}
+        quarter={quarter}
       />
 
       <div className="match-card-teams">

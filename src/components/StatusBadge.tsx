@@ -4,14 +4,23 @@ import "@/app/styles/status-badge.css";
 interface StatusBadgeProps {
   status: MatchStatus;
   minute: number;
+  clock?: string | null;
+  quarter?: number | null;
 }
 
-export const StatusBadge = ({ status, minute }: StatusBadgeProps) => {
+export const StatusBadge = ({ status, minute, clock, quarter }: StatusBadgeProps) => {
   if (status === "live") {
+    const label =
+      quarter && clock
+        ? `Q${quarter} ${clock}`
+        : clock
+          ? clock
+          : `${minute}'`;
+
     return (
       <span className="status-badge status-live">
         <span className="status-live-dot" aria-hidden="true" />
-        {minute}&#39;
+        {label}
       </span>
     );
   }
