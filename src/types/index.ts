@@ -63,3 +63,7 @@ export interface ApiNbaMatch {
   clock: string | null;
   overtime: boolean | null;
 }
+
+export type LiveUpdateMessage =
+  | { type: "live_update"; sport: "futbol"; matches: ApiMatch[] }
+  | { type: "live_update"; sport: "nba"; matches: ApiNbaMatch[] };
