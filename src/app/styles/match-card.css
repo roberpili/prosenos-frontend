@@ -29,12 +29,8 @@
     grid-column: 1 / -1;
     grid-row: 2;
     grid-template-columns: subgrid;
-
     margin: 0.75rem -1rem -0.75rem -1rem;
     padding: 0.5rem 1rem 0.75rem 1rem;
-
-    border-top: 2px solid rgba(250, 218, 94, 0.8);
-    min-width: 0;
 }
 
 .match-card-scorers > :first-child {
@@ -43,16 +39,4 @@
 
 .match-card-scorers > :last-child {
     grid-column: 4;
-}
-
-.match-card-scorers-split::before {
-    content: "";
-    grid-column: 3;
-    grid-row: 1;
-    justify-self: center;
-    width: 2px;
-    align-self: stretch;
-    margin-top: -0.5rem;
-    margin-bottom: -0.75rem;
-    background: rgba(250, 218, 94, 0.8);
 }
