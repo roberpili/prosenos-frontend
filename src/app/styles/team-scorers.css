@@ -1,0 +1,28 @@
+.team-display-scorers {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.team-display-scorers-left {
+    align-items: flex-start;
+}
+
+.team-display-scorers-right {
+    align-items: flex-end;
+}
+
+.team-display-scorer {
+    color: white;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    overflow-wrap: anywhere;
+}
+
+.team-display-scorer-right {
+    text-align: right;
+}

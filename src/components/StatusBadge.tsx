@@ -26,7 +26,7 @@ export const StatusBadge = ({ status, minute, clock, quarter }: StatusBadgeProps
   }
 
   if (status === "ET") {
-    return <span className="status-badge status-neutral">ET</span>;
+    return <span className="status-badge status-live">ET</span>;
   }
 
   if (status === "finished") {

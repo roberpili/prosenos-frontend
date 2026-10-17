@@ -121,8 +121,9 @@ export function formatDateParam(d: Date): string {
   return `${day}-${month}-${year}`;
 }
 
-export function formatKickoff(d: string): string {
-  return d.split("T")[1].slice(0, 5);
+export function formatKickoff(d?: string | null): string {
+  const time = d?.split("T")[1]?.slice(0, 5);
+  return time ?? "--:--";
 }
 
 // page.tsx

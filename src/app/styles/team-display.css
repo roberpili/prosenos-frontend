@@ -51,30 +51,6 @@
     overflow-wrap: anywhere;
 }
 
-.team-display-name-right,
-.team-display-scorer-right {
+.team-display-name-right {
     text-align: right;
-}
-
-.team-display-scorers {
-    display: flex;
-    flex-direction: column;
-    gap: 0.125rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.team-display-scorers-left {
-    align-items: flex-start;
-}
-
-.team-display-scorers-right {
-    align-items: flex-end;
-}
-
-.team-display-scorer {
-    color: rgb(156 163 175);
-    font-size: 0.75rem;
-    line-height: 1rem;
 }

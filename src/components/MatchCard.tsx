@@ -2,6 +2,7 @@ import { Match, MatchStatus, Team } from "@/types";
 import { MatchTimeStatus } from "./MatchTimeStatus";
 import { TeamDisplay } from "./TeamDisplay";
 import { ScoreColumn } from "./ScoreColumn";
+import { TeamScorers } from "./TeamScorers";
 import "@/app/styles/match-card.css";
 
 interface MatchCardProps {
@@ -35,8 +36,8 @@ export const MatchCard = ({
   quarter,
   homeTeam,
   awayTeam,
-  homeScorers,
-  awayScorers,
+  homeScorers = [],
+  awayScorers = [],
   showScore,
   homeScore,
   awayScore,
@@ -47,6 +48,10 @@ export const MatchCard = ({
   homePenalties,
   awayPenalties,
 }: MatchCardProps) => {
+  const hasScorers = homeScorers.length > 0 || awayScorers.length > 0;
+  const hasSplitScorers =
+    homeScorers.length > 0 && awayScorers.length > 0;
+
   return (
     <article className={`match-card ${isLive ? "match-card-live" : ""}`}>
       <MatchTimeStatus
@@ -58,7 +63,7 @@ export const MatchCard = ({
       />
 
       <div className="match-card-teams">
-        <TeamDisplay team={homeTeam} scorers={homeScorers} align="right" />
+        <TeamDisplay team={homeTeam} align="right" />
 
         <ScoreColumn
           showScore={showScore}
@@ -73,8 +78,27 @@ export const MatchCard = ({
           awayPenalties={awayPenalties}
         />
 
-        <TeamDisplay team={awayTeam} scorers={awayScorers} align="left" />
+        <TeamDisplay team={awayTeam} align="left" />
       </div>
+
+      {hasScorers && (
+        <div
+          className={`match-card-scorers ${
+            hasSplitScorers ? "match-card-scorers-split" : ""
+          }`}
+        >
+          <TeamScorers
+            teamName={homeTeam.name}
+            scorers={homeScorers}
+            align="right"
+          />
+          <TeamScorers
+            teamName={awayTeam.name}
+            scorers={awayScorers}
+            align="left"
+          />
+        </div>
+      )}
     </article>
   );
 };
