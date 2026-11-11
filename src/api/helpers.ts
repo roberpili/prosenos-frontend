@@ -122,8 +122,14 @@ export function formatDateParam(d: Date): string {
 }
 
 export function formatKickoff(d?: string | null): string {
-  const time = d?.split("T")[1]?.slice(0, 5);
-  return time ?? "--:--";
+  if (!d) return "--:--";
+
+  return new Date(d).toLocaleTimeString("es-AR", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+    timeZone: "America/Argentina/Buenos_Aires",
+  });
 }
 
 // page.tsx
