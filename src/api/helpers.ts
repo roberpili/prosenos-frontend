@@ -15,7 +15,7 @@ export function mapMatch(raw: ApiMatch): Match {
     league: raw.league,
     sport: "futbol",
     minute: raw.minute ?? -1,
-    kickoff: formatKickoff(raw.kickoff),
+    kickoff: raw.kickoff ? formatKickoff(raw.kickoff) : "",
     homeScorers: raw.home_scorers,
     awayScorers: raw.away_scorers,
     qualifies: raw.qualifies,
