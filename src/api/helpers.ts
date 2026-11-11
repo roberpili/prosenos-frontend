@@ -1,4 +1,11 @@
 import { ApiMatch, ApiNbaMatch, Match, MatchStatus } from "@/types";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
+import timezone from "dayjs/plugin/timezone";
+
+// fix utc fallback
+dayjs.extend(utc);
+dayjs.extend(timezone);
 
 export function mapMatch(raw: ApiMatch): Match {
   return {
@@ -124,12 +131,7 @@ export function formatDateParam(d: Date): string {
 export function formatKickoff(d?: string | null): string {
   if (!d) return "--:--";
 
-  return new Date(d).toLocaleTimeString("es-AR", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-    timeZone: "America/Argentina/Buenos_Aires",
-  });
+  return dayjs(d).tz("America/Argentina/Buenos_Aires").format("HH:mm");
 }
 
 // page.tsx
