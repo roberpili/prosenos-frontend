@@ -130,8 +130,8 @@ export function formatDateParam(d: Date): string {
 
 export function formatKickoff(d?: string | null): string {
   if (!d) return "--:--";
-
-  return dayjs(d).tz("America/Argentina/Buenos_Aires").format("HH:mm");
+  const parsed = dayjs(d).tz("America/Argentina/Buenos_Aires");
+  return parsed.format("HH:mm");
 }
 
 // page.tsx
