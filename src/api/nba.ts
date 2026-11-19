@@ -1,4 +1,4 @@
-import { ApiNbaMatch, Match } from "@/types";
+import { ApiNbaMatch, Match, NbaStandings } from "@/types";
 import { formatDateParam, isToday, isYesterday } from "./helpers";
 import { mapNbaMatch } from "./helpers";
 
@@ -24,4 +24,18 @@ export async function fetchNBAMatches(
   const data: ApiNbaMatch[] = await res.json();
 
   return data.map(mapNbaMatch);
+}
+
+export async function fetchNBALeaderboard(
+  baseUrl?: string,
+): Promise<NbaStandings> {
+  const path = "/api/v1/nba/leaderboard";
+  const url = baseUrl ? `${baseUrl}${path}` : path;
+
+  const res = await fetch(url, { cache: "no-store" });
+  if (!res.ok) {
+    throw new Error(`Error fetching NBA leaderboard: ${res.status}`);
+  }
+
+  return res.json();
 }
