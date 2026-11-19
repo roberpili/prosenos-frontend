@@ -5,6 +5,16 @@ const nextConfig: NextConfig = {
     agentUpgrade: "security",
   },
 
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "a.espncdn.com",
+        pathname: "/i/teamlogos/nba/**",
+      },
+    ],
+  },
+
   async rewrites() {
     return [
       {

@@ -67,3 +67,20 @@ export interface ApiNbaMatch {
 export type LiveUpdateMessage =
   | { type: "live_update"; sport: "futbol"; matches: ApiMatch[] }
   | { type: "live_update"; sport: "nba"; matches: ApiNbaMatch[] };
+
+export interface NbaStandingTeam {
+  id: string;
+  name: string;
+  abbreviation: string;
+  logo: string;
+  wins: number;
+  losses: number;
+  win_percentage: number;
+  games_behind: number;
+  streak: string;
+}
+
+export interface NbaStandings {
+  eastern_conference: NbaStandingTeam[];
+  western_conference: NbaStandingTeam[];
+}
