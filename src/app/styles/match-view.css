@@ -18,3 +18,16 @@
     gap: 0.75rem;
     padding: 1.25rem;
 }
+
+.match-standings-link {
+    align-self: flex-start;
+    color: #fcbf49;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.025em;
+    text-decoration: none;
+}
+
+.match-standings-link:hover {
+    text-decoration: underline;
+}

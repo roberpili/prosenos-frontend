@@ -3,6 +3,7 @@
 import { formatDateParam, isToday, mapMatch, mapNbaMatch } from "@/api/helpers";
 import { LiveUpdateMessage, Match, Sport } from "@/types";
 import { groupMatchesByLeague, parseDateParam } from "@/utils/matches";
+import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { MatchViewHeader } from "./MatchViewHeader";
@@ -125,6 +126,11 @@ export const MatchView = ({
             onPrev={() => navigateDate(-1)}
             onNext={() => navigateDate(1)}
           />
+          {sport === "nba" && (
+            <Link href="/nba/leaderboard" className="match-standings-link">
+              View Standings
+            </Link>
+          )}
           <MatchResult loading={false} error={initialError} grouped={grouped} />
         </div>
       </main>
